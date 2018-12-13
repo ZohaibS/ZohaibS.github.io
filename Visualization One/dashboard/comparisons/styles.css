@@ -1,0 +1,32 @@
+h1 {
+    font-style: Garamond;
+}
+
+h6 {
+    font-style: Garamond;
+}
+
+ul {
+    border: 10px solid pink;
+}
+
+#special-paragraph {
+    font-size: 20px;
+    background-color: aqua;
+    color: rgb(134, 0, 67);
+}
+
+.special-li {
+    color: white;
+}
+
+.vl {
+    border-left: 6px solid green;
+    height: 500px;
+}
+
+.container-bg {
+    background: #62ff13;
+}
+
+

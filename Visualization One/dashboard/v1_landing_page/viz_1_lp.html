@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Analyzing Weather Patterns with Respect to Latitude</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container-bg">
+  <div class="container">
+    <div class="col-sm-12">
+      <br>
+      <h3><center> Analyzing Weather Patterns with Respect to Latitude </center></h3></div>
+      <br>
+    </div>
+</div>
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col-sm-4">
+          <br>
+          <br>
+          <h2>Goals</h2>
+        </div>
+        <div class="col-sm-4">
+          <br>
+          <br>
+          <h2>&nbsp &nbsp Methodology</h2>
+        </div>
+        <div class="col-sm-4">
+          <br>
+          <br>
+          <h2>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Insights</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-start">
+      <div class="col-sm-4">
+        <br>
+        &nbsp &nbsp &nbsp The aim of these visualizations is to display
+        the 
+        <br>
+        &nbsp &nbsp &nbsp effect location has 
+        on various weather metrics.
+        <br>
+        <br>
+        &nbsp &nbsp &nbsp For our purposes, I have examined
+        latitude's 
+        <br>
+        &nbsp &nbsp &nbsp effect on temperature (in farenheit), 
+        humidity,
+        <br> &nbsp &nbsp &nbsp wind speed 
+        (in miles per hour), and cloudiness.
+        <br>
+        <br>
+        &nbsp &nbsp &nbsp If you would like to see the raw data, you may
+        <br>
+        &nbsp &nbsp &nbsp find it <a href="https://zohaibs.github.io/data.html">here</a>.
+      </div>
+      <div class="col-sm-4">
+        <br>
+        500 cities were randomly selected (the cities were 
+        <br>
+        randomized based on two randomly selected values 
+        <br>
+        via numpy accounting for longitude and latitude.)
+        <br>
+        The city was then determined using the citipy 
+        <br>
+        library.
+        <br>
+        <br>
+        The weather observations 
+        used were from that  
+        <br>
+        same moment on November 11th, 2018.
+        <br>
+        Regions with missing measurements were filtered
+        <br>
+        from the list. The data was pulled from the 
+        <br>
+        OpenWeatherMap API. 
+        <br>
+        <br>
+        Sidenote: Thank you OWM for the excellent resource!
+     
+      </div>
+      <div class="col-sm-4">
+       <br>
+       The first graph that we have is of the temperature
+       <br>
+       versus the latitude. It appears we have a nice 
+       <br>
+       correlation.
+       <br>
+       <br>
+       The second graph is of the humidity versus the latitude.
+       <br>
+       There is little to say about this one.
+       <br>
+       <br>
+       The third graph is of the windspeed versus the latitude.
+       <br>
+       Again there is little to say here.
+       <br>
+       <br>
+       The fourth and last graph is of the cloudiness versus
+       <br>
+       the latitude. There appears to be almost no correlation
+       <br>
+       here.
+       <br>
+       <br>
+       For more information and a better view of any of the graphs,
+       <br>
+       please do not hesitate to click on any of them below.
+       <br>
+       <br>
+       <br>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-sm-3">
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+            
+            #myImg {
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            
+            #myImg:hover {opacity: 0.7;}
+            
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 10;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+            }
+            
+            /* Modal Content (image) */
+            .modal-content {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+            }
+            
+            /* Caption of Modal Image */
+            #caption {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+                text-align: left;
+                color: #ccc;
+                padding: 10px 0;
+                height: 150px;
+            }
+            
+            /* Add Animation */
+            .modal-content, #caption {    
+                -webkit-animation-name: zoom;
+                -webkit-animation-duration: 0.6s;
+                animation-name: zoom;
+                animation-duration: 0.6s;
+            }
+            
+            @-webkit-keyframes zoom {
+                from {-webkit-transform:scale(0)} 
+                to {-webkit-transform:scale(1)}
+            }
+            
+            @keyframes zoom {
+                from {transform:scale(0)} 
+                to {transform:scale(1)}
+            }
+            
+            /* The Close Button */
+            .close {
+                position: absolute;
+                top: 15px;
+                right: 35px;
+                color: #f1f1f1;
+                font-size: 40px;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+            
+            .close:hover,
+            .close:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            
+            /* 100% Image Width on Smaller Screens */
+            @media only screen and (max-width: 700px){
+                .modal-content {
+                    width: 100%;
+                }
+            }
+            </style>
+            </head>
+            <body>
+            
+            <h6><center>Latitude and Temperature</center></h6>
+            <img id="myImg" src="Figure_1.png" alt="Figure 1: Latitude vs Temperature
+            <br>
+            <br>
+            On the temperature front (no pun intended), there appears to be a strong correlation between high temperatures and low latitudes. This is apparent from the strong clustering roughly centered about a downward parabola. This shouldn't be a huge surprise since we generally expect higher temperatures near the equator." 
+            style="width:100%;max-width:300px">
+            
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+              <span class="close">&times;</span>
+              <img class="modal-content" id="img01">
+              <div id="caption"></div>
+            </div>
+            
+            <script>
+            // Get the modal
+            var modal = document.getElementById('myModal');
+            
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById('myImg');
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt
+            }
+            
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+            
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() { 
+                modal.style.display = "none";
+            }
+            </script>
+    </div>
+    <div class="col-sm-3">      
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+            
+            #myImg2 {
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            
+            #myImg2:hover {opacity: 0.7;}
+            
+            /* The Modal (background) */
+            .modal2 {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 10;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+            }
+            
+            /* Modal Content (image) */
+            .modal-content2 {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+            }
+            
+            /* Caption of Modal Image */
+            #caption2 {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+                text-align: left;
+                color: #ccc;
+                padding: 10px 0;
+                height: 150px;
+            }
+            
+            /* Add Animation */
+            .modal-content2, #caption2 {    
+                -webkit-animation-name: zoom;
+                -webkit-animation-duration: 0.6s;
+                animation-name: zoom;
+                animation-duration: 0.6s;
+            }
+            
+            @-webkit-keyframes zoom {
+                from {-webkit-transform:scale(0)} 
+                to {-webkit-transform:scale(1)}
+            }
+            
+            @keyframes zoom {
+                from {transform:scale(0)} 
+                to {transform:scale(1)}
+            }
+            
+            /* The Close Button */
+            .close2 {
+                position: absolute;
+                top: 15px;
+                right: 35px;
+                color: #f1f1f1;
+                font-size: 40px;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+            
+            .close2:hover,
+            .close2:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            
+            /* 100% Image Width on Smaller Screens */
+            @media only screen and (max-width: 700px){
+                .modal-content2 {
+                    width: 100%;
+                }
+            }
+            </style>
+            </head>
+            <body>
+            
+            <h6><center>Latitude and Humidity</center></h6>
+            <img id="myImg2" src="Figure_2.png" alt="Figure 2: Latitude vs Humidity (as a Percentage)
+            <br>
+            <br>
+            On the humidity side of things there appears to be less to say. The only slight anomaly that we could possibly investigate further would be the lack of low humidities near 0 degrees. It might be worth going back and running this algorithm again many times at many points throughout the year to see if the 0 degree phenomenon is a mere coincidence or of particular interest."
+            style="width:100%;max-width:300px">
+            
+            <!-- The Modal -->
+            <div id="myModal2" class="modal">
+              <span class="close2">&times;</span>
+              <img class="modal-content2" id="img02">
+              <div id="caption2"></div>
+            </div>
+            
+            <script>
+            // Get the modal
+            var modal = document.getElementById('myModal2');
+            
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById('myImg2');
+            var modalImg = document.getElementById("img02");
+            var captionText = document.getElementById("caption2");
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt
+            }
+            
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close2")[0];
+            
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() { 
+                modal.style.display = "none";
+            }
+            </script>
+    </div>
+    <div class="col-sm-3">      
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+            
+            #myImg3 {
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            
+            #myImg3:hover {opacity: 0.7;}
+            
+            /* The Modal (background) */
+            .modal3 {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 10;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+            }
+            
+            /* Modal Content (image) */
+            .modal-content3 {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+            }
+            
+            /* Caption of Modal Image */
+            #caption3 {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+                text-align: left;
+                color: #ccc;
+                padding: 10px 0;
+                height: 150px;
+            }
+            
+            /* Add Animation */
+            .modal-content3, #caption3 {    
+                -webkit-animation-name: zoom;
+                -webkit-animation-duration: 0.6s;
+                animation-name: zoom;
+                animation-duration: 0.6s;
+            }
+            
+            @-webkit-keyframes zoom {
+                from {-webkit-transform:scale(0)} 
+                to {-webkit-transform:scale(1)}
+            }
+            
+            @keyframes zoom {
+                from {transform:scale(0)} 
+                to {transform:scale(1)}
+            }
+            
+            /* The Close Button */
+            .close3 {
+                position: absolute;
+                top: 15px;
+                right: 35px;
+                color: #f1f1f1;
+                font-size: 40px;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+            
+            .close3:hover,
+            .close3:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            
+            /* 100% Image Width on Smaller Screens */
+            @media only screen and (max-width: 700px){
+                .modal-content3 {
+                    width: 100%;
+                }
+            }
+            </style>
+            </head>
+            <body>
+            
+            <h6><center>Latitude and Windspeed</center></h6>  
+      <img id="myImg3" src="Figure_3.png" alt="Figure 3: Latitude vs Windspeed (in Miles Per Hour)
+        <br>
+        <br>
+        Windspeed versus latitude appears deceptive. Attempting to detect correlation based on the visual alone would probably be about as biased as the results of a Rorschach test."
+        style="width:100%;max-width:300px">
+        
+        <!-- The Modal -->
+        <div id="myModal3" class="modal">
+          <span class="close3">&times;</span>
+          <img class="modal-content3" id="img03">
+          <div id="caption3"></div>
+        </div>
+        
+        <script>
+        // Get the modal
+        var modal = document.getElementById('myModal3');
+        
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg3');
+        var modalImg = document.getElementById("img03");
+        var captionText = document.getElementById("caption3");
+        img.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt
+        }
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close3")[0];
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() { 
+            modal.style.display = "none";
+        }
+        </script>
+    </div>
+    <div class="col-sm-3">       
+            <style>
+                body {font-family: Arial, Helvetica, sans-serif;}
+                
+                #myImg4 {
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: 0.3s;
+                }
+                
+                #myImg4:hover {opacity: 0.7;}
+                
+                /* The Modal (background) */
+                .modal4 {
+                    display: none; /* Hidden by default */
+                    position: fixed; /* Stay in place */
+                    z-index: 1; /* Sit on top */
+                    padding-top: 100px; /* Location of the box */
+                    left: 10;
+                    top: 0;
+                    width: 100%; /* Full width */
+                    height: 100%; /* Full height */
+                    overflow: auto; /* Enable scroll if needed */
+                    background-color: rgb(0,0,0); /* Fallback color */
+                    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+                }
+                
+                /* Modal Content (image) */
+                .modal-content4 {
+                    margin: auto;
+                    display: block;
+                    width: 80%;
+                    max-width: 700px;
+                }
+                
+                /* Caption of Modal Image */
+                #caption4 {
+                    margin: auto;
+                    display: block;
+                    width: 80%;
+                    max-width: 700px;
+                    text-align: left;
+                    color: #ccc;
+                    padding: 10px 0;
+                    height: 150px;
+                }
+                
+                /* Add Animation */
+                .modal-content4, #caption4 {    
+                    -webkit-animation-name: zoom;
+                    -webkit-animation-duration: 0.6s;
+                    animation-name: zoom;
+                    animation-duration: 0.6s;
+                }
+                
+                @-webkit-keyframes zoom {
+                    from {-webkit-transform:scale(0)} 
+                    to {-webkit-transform:scale(1)}
+                }
+                
+                @keyframes zoom {
+                    from {transform:scale(0)} 
+                    to {transform:scale(1)}
+                }
+                
+                /* The Close Button */
+                .close4 {
+                    position: absolute;
+                    top: 15px;
+                    right: 35px;
+                    color: #f1f1f1;
+                    font-size: 40px;
+                    font-weight: bold;
+                    transition: 0.3s;
+                }
+                
+                .close4:hover,
+                .close4:focus {
+                    color: #bbb;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                
+                /* 100% Image Width on Smaller Screens */
+                @media only screen and (max-width: 700px){
+                    .modal-content4 {
+                        width: 100%;
+                    }
+                }
+                </style>
+                </head>
+                <body>
+                
+                <h6><center>Latitude and Cloudiness</center></h6>  
+            <img id="myImg4" src="Figure_4.png" alt="Figure 4: Latitude vs Cloudiness (as a Percentage)
+            <br>
+            <br>
+            There is nothing to say about cloudiness versus latitude from the graph. All we can really say about the correlation here is that there is a very strong chance there is none."
+            style="width:100%;max-width:300px">
+            
+            <!-- The Modal -->
+            <div id="myModal4" class="modal">
+              <span class="close4">&times;</span>
+              <img class="modal-content4" id="img04">
+              <div id="caption4"></div>
+            </div>
+            
+            <script>
+            // Get the modal
+            var modal = document.getElementById('myModal4');
+            
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById('myImg4');
+            var modalImg = document.getElementById("img04");
+            var captionText = document.getElementById("caption4");
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt
+            }
+            
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close4")[0];
+            
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() { 
+                modal.style.display = "none";
+            }
+            </script>
+    </div>
+  </div>
+<div class = "row">
+  <div class = "small-col-12">
+    <br>
+    <br>
+    <h6> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Would you rather see all the graphs on one page? No problem! Just click <a href="https://zohaibs.github.io/comp.html">here</a>. </h6>
+  </div>
+</div>
+</body>
+</html> 
