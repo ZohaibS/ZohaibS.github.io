@@ -42,13 +42,13 @@
     .btn-primary:hover{
     background: #99bbff;
     
-    color: whitesmoke;
+    color: black;
 
     }
 
     .btn-dark:hover{
     background: #999999;
 
-    color: whitesmoke;
+    color: black;
 
     }
